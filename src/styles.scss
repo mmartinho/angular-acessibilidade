@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Style */
+
+/* Todo elemento usando box-sizing "border-box" 
+   ao invés do padrão "content-box" */
+* {
+    box-sizing: border-box;
+}
+
+/* Padrão de fonte Sans */
+body {
+    font-family:  'Open Sans', sans-serif;
+    color: #272c3f;
+}
+
+/* Define um contorno de foco de elemento em laranja */
+:focus {
+    outline: 2px solid orange;
+}
