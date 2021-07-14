@@ -8,6 +8,8 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+import { UniqueIdService } from './../../unique-id/unique-id.service';
+
 /**
  * Possíveis valores que pode assumir
  * o estado do componente
@@ -41,7 +43,6 @@ export class YesNoButtonGroupComponent implements OnInit, ControlValueAccessor {
    * @see YesNoButtonGroupOptions
    */
   public options = YesNoButtonGroupOptions;
-
   /**
    * Event handler que informa que ouve mudança
    * no modelo associado ao componente
@@ -49,7 +50,6 @@ export class YesNoButtonGroupComponent implements OnInit, ControlValueAccessor {
    * @param value
    */
   public onChange = (value: string) => {};
-
   /**
    * Event handler que informa que o componente
    * foi "tocado"
@@ -57,13 +57,29 @@ export class YesNoButtonGroupComponent implements OnInit, ControlValueAccessor {
    * @param value
    */
   public onTouched = () => {};
-
+  /** 
+   * Recebe o valor marcado 
+   */
   @Input() public value: string = null;
+  /**
+   * Externaliza um evento que leva uma variável string
+   */
   @Output() public valueChange = new EventEmitter<string>();
+  /** 
+   * Recebe o texto de exibição 
+   */
   @Input() public label = '';
+  /**
+   * ID "uuid" html gerado com unicidade 
+   */
+  public id: string = null;
 
-  constructor() {}
+  /** */
+  constructor(private uniqueIdService : UniqueIdService) {
+    this.id = uniqueIdService.generateUniqueIdWithPrefix('yes-no-button-group');
+  }
 
+  /** */
   ngOnInit(): void {}
 
   /**
@@ -95,6 +111,10 @@ export class YesNoButtonGroupComponent implements OnInit, ControlValueAccessor {
     this.onTouched = fn;
   }
 
+  /**
+   * Para uso futuro
+   * @param isDisabled 
+   */
   public setDisabledState?(isDisabled: boolean): void {
     throw new Error('Method not implemented.');
   }
