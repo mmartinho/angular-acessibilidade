@@ -1,5 +1,6 @@
 <!-- "aria-label" contextualizando a div -->
 <div 
+  appKeyboardManager
   role="radiogroup" 
   [attr.aria-labelledby]="id"
   class="button-group"
@@ -9,8 +10,11 @@
 
   <!-- "aria-checked" retornando o estado de marcado ou não -->
   <button
+    appKeyboardManagedItem
+    (focused)="activate(options.YES)"
     role="radio"
     [attr.aria-checked]="value === options.YES"
+    [attr.tabindex]="activated(options.YES) || value == null ? 0 : -1"
     class="button button-yes"
     type="button"
     (click)="activate(options.YES)"
@@ -20,8 +24,11 @@
   </button>
 
   <button
+    appKeyboardManagedItem
+    (focused)="activate(options.NO)"
     role="radio"
     [attr.aria-checked]="value === options.NO"
+    [attr.tabindex]="activated(options.NO) ? 0 : -1"
     class="button button-no"
     type="button"
     (click)="activate(options.NO)"
