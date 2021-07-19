@@ -40,6 +40,22 @@ enum YesNoButtonGroupOptions {
 })
 export class YesNoButtonGroupComponent implements OnInit, ControlValueAccessor {
   /**
+   * Recebe o estado de habilitação do componente
+   */
+  @Input() disabled = false;
+  /** 
+   * Recebe o valor marcado 
+   */
+  @Input() public value: string = null;
+   /** 
+    * Recebe o texto de exibição 
+    */
+  @Input() public label = '';  
+   /**
+    * Externaliza um evento que leva uma variável string
+    */
+  @Output() public valueChange = new EventEmitter<string>();   
+  /**
    * @see YesNoButtonGroupOptions
    */
   public options = YesNoButtonGroupOptions;
@@ -57,18 +73,6 @@ export class YesNoButtonGroupComponent implements OnInit, ControlValueAccessor {
    * @param value
    */
   public onTouched = () => {};
-  /** 
-   * Recebe o valor marcado 
-   */
-  @Input() public value: string = null;
-  /**
-   * Externaliza um evento que leva uma variável string
-   */
-  @Output() public valueChange = new EventEmitter<string>();
-  /** 
-   * Recebe o texto de exibição 
-   */
-  @Input() public label = '';
   /**
    * ID "uuid" html gerado com unicidade 
    */
@@ -116,7 +120,7 @@ export class YesNoButtonGroupComponent implements OnInit, ControlValueAccessor {
    * @param isDisabled 
    */
   public setDisabledState?(isDisabled: boolean): void {
-    throw new Error('Method not implemented.');
+    this.disabled = isDisabled;
   }
 
   /**

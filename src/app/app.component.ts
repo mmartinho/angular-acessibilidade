@@ -1,4 +1,3 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -16,7 +15,10 @@ export class AppComponent {
    */
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      yesNoAnswer: ['no']
+      yesNoAnswer: [{
+        value: null,
+        disabled: false
+      }]
     });
   }
 
