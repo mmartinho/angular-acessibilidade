@@ -41,6 +41,7 @@ yarn-error.log
 testem.log
 /typings
 /LEIAME.txt
+/course-src
 
 # System Files
 .DS_Store
